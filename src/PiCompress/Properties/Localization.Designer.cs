@@ -106,6 +106,15 @@ namespace PiCompress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compress Remain Count.
+        /// </summary>
+        internal static string CompressRemainCount {
+            get {
+                return ResourceManager.GetString("CompressRemainCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image Files (*.png, *.jpg)|*.png;*.jpg.
         /// </summary>
         internal static string FilterImageFiles {

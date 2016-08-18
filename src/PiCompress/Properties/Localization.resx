@@ -141,4 +141,7 @@
   <data name="OpenImageFileDialogTitle" xml:space="preserve">
     <value>Open Images File</value>
   </data>
+  <data name="CompressRemainCount" xml:space="preserve">
+    <value>Compress Remain Count</value>
+  </data>
 </root>

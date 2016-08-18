@@ -81,7 +81,7 @@ namespace PiCompress
         }
 
 
-        private void Tinify_ProgressChanged(double elapsedPercent, byte[] currentLevelImage)
+        private void Tinify_ProgressChanged(double elapsedPercent, byte[] currentLevelImage, int compressionCount)
         {
             procCompressLevel.Value = (int)elapsedPercent;
 
@@ -92,7 +92,14 @@ namespace PiCompress
                 Size = new Size(200, 200)
             };
 
+            this.Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {TinifyHelperExtensions.MaxCompressCount - compressionCount}";
             flPanel.Controls.Add(pic);
+        }
+
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            var tinify = new TinifyImage(Settings.Default.TinifyApiKey, _importPath, (int)numCompressLevel.Value);
+            this.Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {TinifyHelperExtensions.MaxCompressCount - await tinify.CompressRemainCountAsync()}";
         }
     }
 }

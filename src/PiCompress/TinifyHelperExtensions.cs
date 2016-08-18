@@ -10,6 +10,8 @@ namespace PiCompress
 {
     public static class TinifyHelperExtensions
     {
+        public static int MaxCompressCount { get; } = 500;
+
         public static double GetPercent(this int total, int count)
         {
             return (double)count * 100 / total;

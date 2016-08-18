@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PiCompress.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TinifyApiKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Lx_xKeox8S5ULBVyrzDg3IZH3SricUXv</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

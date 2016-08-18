@@ -12,19 +12,29 @@ namespace PiCompress
 {
     public class TinifyImage
     {
-        protected string ApiUrl = "https://api.tinify.com/shrink";
-        protected string ApiKey { get; set; }
+        internal static string ApiUrl = "https://api.tinify.com/shrink";
+        public static int MaxCompressCount { get; } = 500;
+        public List<TinifyApiKeyPair> ApiKeys { get; set; }
         public string SourceImagePath { get; set; }
         public int RepeatCompressionNumber { get; set; }
-        public string TempFile { get; set; } = Path.GetTempFileName();
         public TinifyImage(string tinifyApiKey, string sourceImgPath) : this(tinifyApiKey, sourceImgPath, 1) { }
         public TinifyImage(string tinifyApiKey, string sourceImgPath, int repeatCompressionNo)
         {
-            ApiKey = tinifyApiKey;
+            ApiKeys = new List<TinifyApiKeyPair>
+            {
+                TinifyApiKeyPair.Create(tinifyApiKey, CompressRemainCountAsync(tinifyApiKey).Result)
+            };
+
             SourceImagePath = sourceImgPath;
             RepeatCompressionNumber = repeatCompressionNo;
         }
-
+        public TinifyImage(List<TinifyApiKeyPair> tinifyApiKeys, string sourceImgPath): this(tinifyApiKeys, sourceImgPath, 1) { }
+        public TinifyImage(List<TinifyApiKeyPair> tinifyApiKeys, string sourceImgPath, int repeatCompressionNo)
+        {
+            ApiKeys = tinifyApiKeys;
+            SourceImagePath = sourceImgPath;
+            RepeatCompressionNumber = repeatCompressionNo;
+        }
 
         public delegate void ProgressChangedEventHandler(double elapsedPercent, byte[] currentLevelImage, int compressionCount);
         public event ProgressChangedEventHandler ProgressChanged = delegate { };
@@ -35,36 +45,48 @@ namespace PiCompress
 
         public Image Compress()
         {
-            using (var client = new WebClient())
+            byte[] resImg = File.ReadAllBytes(SourceImagePath);
+
+            for (var repeatCount = 1; repeatCount <= RepeatCompressionNumber; repeatCount++)
             {
-                var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"api:{ApiKey}"));
-                client.Headers.Add(HttpRequestHeader.Authorization, $"Basic {auth}");
-
-                var srcImg = File.ReadAllBytes(SourceImagePath);
-                byte[] resImg = null;
-                for (var repeatCount = 1; repeatCount <= RepeatCompressionNumber; repeatCount++)
+                using (var client = new WebClient())
                 {
-                    client.UploadData(ApiUrl, srcImg);
+                    if (!ApiKeys.Any()) break;
 
-                    // Compression was successful, retrieve output from Location header.
-                    resImg = client.DownloadData(client.ResponseHeaders["Location"]);
-                    var count = int.Parse(client.ResponseHeaders["Compression-Count"]);
+                    var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"api:{ApiKeys[0].Key}"));
+                    client.Headers.Add(HttpRequestHeader.Authorization, $"Basic {auth}");
 
-                    // call progress event to new compress level
-                    OnProgressChanged(RepeatCompressionNumber.GetPercent(repeatCount), resImg, count);
+                    do
+                    {
+                        client.UploadData(ApiUrl, resImg);
+
+                        // Compression was successful, retrieve output from Location header.
+                        resImg = client.DownloadData(client.ResponseHeaders["Location"]);
+                        ApiKeys[0].CompressCount = int.Parse(client.ResponseHeaders["Compression-Count"]);
+
+                        // call progress event to new compress level
+                        OnProgressChanged(RepeatCompressionNumber.GetPercent(repeatCount), resImg, ApiKeys[0].CompressCount);
+
+                        if (ApiKeys[0].CompressRemainCount <= 0) ApiKeys.RemoveAt(0);
+                    } while (++repeatCount <= RepeatCompressionNumber && ApiKeys.Any());
                 }
-
-                return resImg.ConvertToImage();
             }
+
+            return resImg.ConvertToImage();
         }
-        
-        public async Task<int> CompressRemainCountAsync()
+
+        public int CompressRemainCount()
+        {
+            return ApiKeys.Sum(x => x.CompressRemainCount);
+        }
+
+        public static async Task<int> CompressRemainCountAsync(string apiKey)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(ApiUrl);
+                client.BaseAddress = new Uri(TinifyImage.ApiUrl);
                 client.Timeout = TimeSpan.FromSeconds(20);
-                var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"api:{ApiKey}"));
+                var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"api:{apiKey}"));
                 client.DefaultRequestHeaders.Add("Authorization", $"Basic {auth}");
 
                 // Construct an HttpContent from a StringContent
@@ -73,11 +95,11 @@ namespace PiCompress
                 // and add the header to this object instance
                 // optional: add a formatter option to it as well
                 // synchronous request without the need for .ContinueWith() or await
-                HttpResponseMessage response = await client.PostAsync(ApiUrl, body);
+                HttpResponseMessage response = await client.PostAsync(TinifyImage.ApiUrl, body);
                 var res = response.Headers.GetValues("Compression-Count").FirstOrDefault();
 
                 int count;
-                return int.TryParse(res, out count) ? count : 0;
+                return Int32.TryParse(res, out count) ? count : 0;
             }
         }
     }

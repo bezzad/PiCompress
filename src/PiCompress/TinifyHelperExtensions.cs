@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using PiCompress.Properties;
 
 namespace PiCompress
 {
     public static class TinifyHelperExtensions
     {
-        public static int MaxCompressCount { get; } = 500;
-
         public static double GetPercent(this int total, int count)
         {
             return (double)count * 100 / total;
@@ -25,6 +22,35 @@ namespace PiCompress
             {
                 return Image.FromStream(ms);
             }
+        }
+
+        public static async Task<List<TinifyApiKeyPair>> GenerateTinifyApiKeysAsync()
+        {
+            var lst = new List<TinifyApiKeyPair>();
+
+            for (var index = 1; index <= Settings.Default.Properties.Count; index++)
+            {
+                var tinifyKey = Settings.Default[$"TinifyApiKey{index}"].ToString();
+                var count = await TinifyImage.CompressRemainCountAsync(tinifyKey);
+                if (count < TinifyImage.MaxCompressCount)
+                {
+                    lst.Add(TinifyApiKeyPair.Create(tinifyKey, count));
+                }
+            }
+
+            return lst;
+        }
+
+        public static async Task<string> GenerateApiKey()
+        {
+            for (var index = 1; index <= Settings.Default.PropertyValues.Count; index++)
+            {
+                var tinifyKey = Settings.Default[$"TinifyApiKey{index}"].ToString();
+                var count = await TinifyImage.CompressRemainCountAsync(tinifyKey);
+                if (count < TinifyImage.MaxCompressCount) return tinifyKey;
+            }
+
+            return null;
         }
     }
 }

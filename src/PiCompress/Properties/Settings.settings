@@ -2,8 +2,65 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PiCompress.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="TinifyApiKey" Type="System.String" Scope="User">
+    <Setting Name="TinifyApiKey1" Type="System.String" Scope="User">
       <Value Profile="(Default)">Lx_xKeox8S5ULBVyrzDg3IZH3SricUXv</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4O8zh8GXiJIqQdKv7yoRrR6plE1i8Tzd</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zBc__zlzCmwnlEgPL-7X0H_BnhjDpfSG</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">IA12GtFPAyLz_QE5xxnRWgyAqbYL8Tqr</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">fI-5v52VQukg2e2ezUW0zfPdzmjFOA5z</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mCF8Y25CzPAep5_2g3_2zN05QBsnPX2W</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BU8rFN4g_OiQ8cIVQ5LxtsMWQO2K9tjV</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VYbc2vrzxQNAqfySiU4r-boLXAyGvA5a</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey9" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-h_fRGdLSzuHdzUFDq8ljT9PI3CGK8OD</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">oo3_SVknTO0SEqDVLrhiA2YBZE_bGUS0</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey11" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rzQujxUmR0XOKuVHuinni5NE5VqzgBE8</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey12" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zDWfA3EPb9TXo2uMjnhhHapgikwPr-br</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey13" Type="System.String" Scope="User">
+      <Value Profile="(Default)">XZnKmW59qmPFuwzDFgaU45bGbF49tyoE</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey14" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7mB438DVDMJOTp21Ly1gOppImu1ie5Zu</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey15" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8qP3fOTy2uBhLPz8AsOn3K4JyKBA37WW</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey16" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rDTUhvVBXaEs3RDE__USBBgj5lCwjAIO</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey17" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TVSFGewstlreXW8uCmADNW_QGRARcvks</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey18" Type="System.String" Scope="User">
+      <Value Profile="(Default)">YyqScjwa-TTUSZd6vZ1M-v4PPnl0upeB</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey19" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CE4afGsO3ZXilUVprbWUfIMyj8QvRd7d</Value>
+    </Setting>
+    <Setting Name="TinifyApiKey20" Type="System.String" Scope="User">
+      <Value Profile="(Default)">z_nqIstWVfhMf4eBxY32lqqRXgqXIkYJ</Value>
     </Setting>
   </Settings>
 </SettingsFile>

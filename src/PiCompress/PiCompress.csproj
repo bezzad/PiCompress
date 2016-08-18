@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TinifyApiKeyPair.cs" />
     <Compile Include="TinifyHelperExtensions.cs" />
     <Compile Include="TinifyImage.cs" />
     <EmbeddedResource Include="MainForm.resx">

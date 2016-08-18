@@ -26,12 +26,240 @@ namespace PiCompress.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Lx_xKeox8S5ULBVyrzDg3IZH3SricUXv")]
-        public string TinifyApiKey {
+        public string TinifyApiKey1 {
             get {
-                return ((string)(this["TinifyApiKey"]));
+                return ((string)(this["TinifyApiKey1"]));
             }
             set {
-                this["TinifyApiKey"] = value;
+                this["TinifyApiKey1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4O8zh8GXiJIqQdKv7yoRrR6plE1i8Tzd")]
+        public string TinifyApiKey2 {
+            get {
+                return ((string)(this["TinifyApiKey2"]));
+            }
+            set {
+                this["TinifyApiKey2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("zBc__zlzCmwnlEgPL-7X0H_BnhjDpfSG")]
+        public string TinifyApiKey3 {
+            get {
+                return ((string)(this["TinifyApiKey3"]));
+            }
+            set {
+                this["TinifyApiKey3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("IA12GtFPAyLz_QE5xxnRWgyAqbYL8Tqr")]
+        public string TinifyApiKey4 {
+            get {
+                return ((string)(this["TinifyApiKey4"]));
+            }
+            set {
+                this["TinifyApiKey4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("fI-5v52VQukg2e2ezUW0zfPdzmjFOA5z")]
+        public string TinifyApiKey5 {
+            get {
+                return ((string)(this["TinifyApiKey5"]));
+            }
+            set {
+                this["TinifyApiKey5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mCF8Y25CzPAep5_2g3_2zN05QBsnPX2W")]
+        public string TinifyApiKey6 {
+            get {
+                return ((string)(this["TinifyApiKey6"]));
+            }
+            set {
+                this["TinifyApiKey6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BU8rFN4g_OiQ8cIVQ5LxtsMWQO2K9tjV")]
+        public string TinifyApiKey7 {
+            get {
+                return ((string)(this["TinifyApiKey7"]));
+            }
+            set {
+                this["TinifyApiKey7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("VYbc2vrzxQNAqfySiU4r-boLXAyGvA5a")]
+        public string TinifyApiKey8 {
+            get {
+                return ((string)(this["TinifyApiKey8"]));
+            }
+            set {
+                this["TinifyApiKey8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-h_fRGdLSzuHdzUFDq8ljT9PI3CGK8OD")]
+        public string TinifyApiKey9 {
+            get {
+                return ((string)(this["TinifyApiKey9"]));
+            }
+            set {
+                this["TinifyApiKey9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("oo3_SVknTO0SEqDVLrhiA2YBZE_bGUS0")]
+        public string TinifyApiKey10 {
+            get {
+                return ((string)(this["TinifyApiKey10"]));
+            }
+            set {
+                this["TinifyApiKey10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("rzQujxUmR0XOKuVHuinni5NE5VqzgBE8")]
+        public string TinifyApiKey11 {
+            get {
+                return ((string)(this["TinifyApiKey11"]));
+            }
+            set {
+                this["TinifyApiKey11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("zDWfA3EPb9TXo2uMjnhhHapgikwPr-br")]
+        public string TinifyApiKey12 {
+            get {
+                return ((string)(this["TinifyApiKey12"]));
+            }
+            set {
+                this["TinifyApiKey12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("XZnKmW59qmPFuwzDFgaU45bGbF49tyoE")]
+        public string TinifyApiKey13 {
+            get {
+                return ((string)(this["TinifyApiKey13"]));
+            }
+            set {
+                this["TinifyApiKey13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7mB438DVDMJOTp21Ly1gOppImu1ie5Zu")]
+        public string TinifyApiKey14 {
+            get {
+                return ((string)(this["TinifyApiKey14"]));
+            }
+            set {
+                this["TinifyApiKey14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8qP3fOTy2uBhLPz8AsOn3K4JyKBA37WW")]
+        public string TinifyApiKey15 {
+            get {
+                return ((string)(this["TinifyApiKey15"]));
+            }
+            set {
+                this["TinifyApiKey15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("rDTUhvVBXaEs3RDE__USBBgj5lCwjAIO")]
+        public string TinifyApiKey16 {
+            get {
+                return ((string)(this["TinifyApiKey16"]));
+            }
+            set {
+                this["TinifyApiKey16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TVSFGewstlreXW8uCmADNW_QGRARcvks")]
+        public string TinifyApiKey17 {
+            get {
+                return ((string)(this["TinifyApiKey17"]));
+            }
+            set {
+                this["TinifyApiKey17"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("YyqScjwa-TTUSZd6vZ1M-v4PPnl0upeB")]
+        public string TinifyApiKey18 {
+            get {
+                return ((string)(this["TinifyApiKey18"]));
+            }
+            set {
+                this["TinifyApiKey18"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CE4afGsO3ZXilUVprbWUfIMyj8QvRd7d")]
+        public string TinifyApiKey19 {
+            get {
+                return ((string)(this["TinifyApiKey19"]));
+            }
+            set {
+                this["TinifyApiKey19"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("z_nqIstWVfhMf4eBxY32lqqRXgqXIkYJ")]
+        public string TinifyApiKey20 {
+            get {
+                return ((string)(this["TinifyApiKey20"]));
+            }
+            set {
+                this["TinifyApiKey20"] = value;
             }
         }
     }

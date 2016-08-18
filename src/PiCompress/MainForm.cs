@@ -15,6 +15,8 @@ namespace PiCompress
     public partial class MainForm : Form
     {
         private string _importPath;
+        private List<TinifyApiKeyPair> _lstKeys;
+
 
         public MainForm()
         {
@@ -51,7 +53,7 @@ namespace PiCompress
         }
 
 
-        private void btnCompress_Click(object sender, EventArgs e)
+        private async void btnCompress_Click(object sender, EventArgs e)
         {
             try
             {
@@ -66,9 +68,10 @@ namespace PiCompress
 
                 procCompressLevel.Value = 0;
 
-                var tinify = new TinifyImage(Settings.Default.TinifyApiKey, _importPath, (int)numCompressLevel.Value);
+                var tinify = new TinifyImage(_lstKeys, _importPath, (int)numCompressLevel.Value);
                 tinify.ProgressChanged += Tinify_ProgressChanged;
                 var result = tinify.Compress();
+                picOutput.Image = result;
             }
             catch (Exception exp)
             {
@@ -92,14 +95,28 @@ namespace PiCompress
                 Size = new Size(200, 200)
             };
 
-            this.Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {TinifyHelperExtensions.MaxCompressCount - compressionCount}";
+            this.Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {TinifyImage.MaxCompressCount - compressionCount}";
             flPanel.Controls.Add(pic);
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            var tinify = new TinifyImage(Settings.Default.TinifyApiKey, _importPath, (int)numCompressLevel.Value);
-            this.Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {TinifyHelperExtensions.MaxCompressCount - await tinify.CompressRemainCountAsync()}";
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                _lstKeys = await TinifyHelperExtensions.GenerateTinifyApiKeysAsync();
+                var tinify = new TinifyImage(_lstKeys, _importPath);
+                Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {tinify.CompressRemainCount()}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
     }
 }

@@ -88,6 +88,15 @@ namespace PiCompress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compressed Images.
+        /// </summary>
+        internal static string CompressedImages {
+            get {
+                return ResourceManager.GetString("CompressedImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compress Level.
         /// </summary>
         internal static string CompressLevel {

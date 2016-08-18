@@ -126,6 +126,9 @@
   <data name="Compress" xml:space="preserve">
     <value>Compress</value>
   </data>
+  <data name="CompressedImages" xml:space="preserve">
+    <value>Compressed Images</value>
+  </data>
   <data name="CompressLevel" xml:space="preserve">
     <value>Compress Level</value>
   </data>

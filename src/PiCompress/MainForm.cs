@@ -26,6 +26,7 @@ namespace PiCompress
             btnBrowseInputImg.Text = Localization.BrowseLargeImage;
             btnCompress.Text = Localization.Compress;
             lblNumCompressLevel.Text = Localization.CompressLevel;
+            gbResult.Text = Localization.CompressedImages;
             Text = Localization.AppTitle;
         }
 
@@ -60,7 +61,10 @@ namespace PiCompress
             if (_importPath == null) return;
 
 
+            var tinify = new TinifyImage(Settings.Default.TinifyApiKey, _importPath);
+            var result = tinify.Compress();
 
+            pictureBox8.Image = result;
         }
     }
 }

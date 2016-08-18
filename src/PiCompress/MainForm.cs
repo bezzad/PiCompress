@@ -53,18 +53,46 @@ namespace PiCompress
 
         private void btnCompress_Click(object sender, EventArgs e)
         {
-            if (_importPath == null)
+            try
             {
-                btnBrowseInputImg.PerformClick();
+                Cursor = Cursors.WaitCursor;
+
+                if (_importPath == null)
+                {
+                    btnBrowseInputImg.PerformClick();
+                }
+
+                if (_importPath == null) return;
+
+                procCompressLevel.Value = 0;
+
+                var tinify = new TinifyImage(Settings.Default.TinifyApiKey, _importPath, (int)numCompressLevel.Value);
+                tinify.ProgressChanged += Tinify_ProgressChanged;
+                var result = tinify.Compress();
             }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
 
-            if (_importPath == null) return;
 
+        private void Tinify_ProgressChanged(double elapsedPercent, byte[] currentLevelImage)
+        {
+            procCompressLevel.Value = (int)elapsedPercent;
 
-            var tinify = new TinifyImage(Settings.Default.TinifyApiKey, _importPath);
-            var result = tinify.Compress();
+            var pic = new PictureBox
+            {
+                Image = currentLevelImage.ConvertToImage(),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Size = new Size(200, 200)
+            };
 
-            pictureBox8.Image = result;
+            flPanel.Controls.Add(pic);
         }
     }
 }

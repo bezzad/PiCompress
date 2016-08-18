@@ -41,7 +41,7 @@ namespace PiCompress
 
                 var srcImg = File.ReadAllBytes(SourceImagePath);
                 byte[] resImg = null;
-                for (var repeatCount = 0; repeatCount < RepeatCompressionNumber; repeatCount++)
+                for (var repeatCount = 1; repeatCount <= RepeatCompressionNumber; repeatCount++)
                 {
                     client.UploadData(ApiUrl, srcImg);
 
@@ -49,25 +49,11 @@ namespace PiCompress
                     resImg = client.DownloadData(client.ResponseHeaders["Location"]);
 
                     // call progress event to new compress level
-                    OnProgressChanged(GetPercent(repeatCount, RepeatCompressionNumber), resImg);
+                    OnProgressChanged(RepeatCompressionNumber.GetPercent(repeatCount), resImg);
                 }
 
-                if (resImg == null) return null;
-
-                using (var ms = new MemoryStream(resImg))
-                {
-                    return Image.FromStream(ms);
-                }
+                return resImg.ConvertToImage();
             }
         }
-
-
-
-        private double GetPercent(int count, int total)
-        {
-            return (double)count * 100 / total;
-        }
-
-
     }
 }

@@ -37,13 +37,10 @@
             this.gbResult = new System.Windows.Forms.GroupBox();
             this.flPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.procCompressLevel = new System.Windows.Forms.ProgressBar();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.gbImportImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCompressLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.gbResult.SuspendLayout();
-            this.flPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // gbImportImage
@@ -133,7 +130,6 @@
             // flPanel
             // 
             this.flPanel.AutoScroll = true;
-            this.flPanel.Controls.Add(this.pictureBox8);
             this.flPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flPanel.Location = new System.Drawing.Point(3, 16);
             this.flPanel.Name = "flPanel";
@@ -146,15 +142,6 @@
             this.procCompressLevel.Name = "procCompressLevel";
             this.procCompressLevel.Size = new System.Drawing.Size(150, 23);
             this.procCompressLevel.TabIndex = 5;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(152, 134);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 8;
-            this.pictureBox8.TabStop = false;
             // 
             // MainForm
             // 
@@ -171,8 +158,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCompressLevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picInput)).EndInit();
             this.gbResult.ResumeLayout(false);
-            this.flPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -188,7 +173,6 @@
         private System.Windows.Forms.GroupBox gbResult;
         private System.Windows.Forms.FlowLayoutPanel flPanel;
         private System.Windows.Forms.ProgressBar procCompressLevel;
-        private System.Windows.Forms.PictureBox pictureBox8;
     }
 }
 

@@ -53,7 +53,7 @@ namespace PiCompress
             while (ApiKeys.Any())
             {
                 ApiKeys[0].CompressCount = await CompressRemainCountAsync(ApiKeys[0].Key);
-                if (ApiKeys[0].CompressRemainCount <= 0) ApiKeys.RemoveAt(0);
+                if (ApiKeys[0].CompressRemainCount <= 1) ApiKeys.RemoveAt(0);
                 else break;
             }
 
@@ -77,7 +77,7 @@ namespace PiCompress
                         // call progress event to new compress level
                         OnProgressChanged(repeatCount, resImg, ApiKeys[0].CompressCount);
 
-                        if (ApiKeys[0].CompressRemainCount <= 0) ApiKeys.RemoveAt(0);
+                        if (ApiKeys[0].CompressRemainCount <= 1) ApiKeys.RemoveAt(0);
 
                         if (lastCompressedSize == resImg.LongLength || cts.IsCancellationRequested) goto EndOfCompress;
 

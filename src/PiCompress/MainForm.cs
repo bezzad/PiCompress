@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using PiCompress.Properties;
@@ -13,6 +14,7 @@ namespace PiCompress
         private List<TinifyApiKeyPair> _lstKeys;
         private int _lastComressionLevel = 0;
         private CancellationTokenSource _cts;
+        private string _appVersion;
         
         public MainForm()
         {
@@ -20,6 +22,7 @@ namespace PiCompress
             //
             // Set Form Text Localization
             //
+            _appVersion = $"v{Assembly.GetExecutingAssembly().GetName().Version?.ToString(3)}";
             gbImportImage.Text = Localization.Import_a_Larg_Image_png_jpg;
             btnBrowseInputImg.Text = Localization.BrowseLargeImage;
             btnCompress.Text = $"{Localization.Compress} {Localization.RightArrow}";
@@ -27,7 +30,7 @@ namespace PiCompress
             gbResult.Text = Localization.CompressedImages;
             btnKeyManager.Text = Localization.KeyManager;
             btnCancel.Text = $"{Localization.Cancel} {Localization.CancelSymbol}";
-            Text = Localization.AppTitle;
+            Text = $"{Localization.AppTitle} {_appVersion}";
         }
 
 
@@ -51,7 +54,7 @@ namespace PiCompress
             var pic = new ImageInfo(compressLevel);
             pic.SetImage(currentLevelImage);
 
-            this.Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {_lstKeys.Sum(x => x.CompressRemainCount)}";
+            this.Text = $"{Localization.AppTitle} {_appVersion} - {Localization.CompressRemainCount}: {_lstKeys.Sum(x => x.CompressRemainCount)}";
             flPanel.Controls.Add(pic);
         }
         private async void MainForm_Load(object sender, EventArgs e)
@@ -62,7 +65,7 @@ namespace PiCompress
 
                 _lstKeys = await TinifyHelperExtensions.GenerateTinifyApiKeysAsync();
                 var tinify = new TinifyImage(_lstKeys, _importPath);
-                Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {tinify.CompressRemainCount()}";
+                Text = $"{Localization.AppTitle} {_appVersion} - {Localization.CompressRemainCount}: {tinify.CompressRemainCount()}";
                 btnCompress.Enabled = true;
             }
             catch (Exception ex)

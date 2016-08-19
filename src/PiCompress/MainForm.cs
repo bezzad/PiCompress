@@ -15,7 +15,7 @@ namespace PiCompress
         private int _lastComressionLevel = 0;
         private CancellationTokenSource _cts;
         private string _appVersion;
-        
+
         public MainForm()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace PiCompress
             gbResult.Text = Localization.CompressedImages;
             btnKeyManager.Text = Localization.KeyManager;
             btnCancel.Text = $"{Localization.Cancel} {Localization.CancelSymbol}";
+            chkDisplayLevelsResult.Text = Localization.DisplayCompressLevels;
             Text = $"{Localization.AppTitle} {_appVersion}";
         }
 
@@ -50,12 +51,15 @@ namespace PiCompress
             _lastComressionLevel = compressLevel;
             var elapsedPercent = ((int)numCompressLevel.Value).GetPercent(compressLevel);
             procCompressLevel.Value = (int)elapsedPercent;
+            Text = $"{Localization.AppTitle} {_appVersion} - {Localization.CompressRemainCount}: {_lstKeys.Sum(x => x.CompressRemainCount)}";
 
-            var pic = new ImageInfo(compressLevel);
-            pic.SetImage(currentLevelImage);
 
-            this.Text = $"{Localization.AppTitle} {_appVersion} - {Localization.CompressRemainCount}: {_lstKeys.Sum(x => x.CompressRemainCount)}";
-            flPanel.Controls.Add(pic);
+            if (chkDisplayLevelsResult.Checked)
+            {
+                var pic = new ImageInfo(compressLevel);
+                pic.SetImage(currentLevelImage);
+                flPanel.Controls.Add(pic);
+            }
         }
         private async void MainForm_Load(object sender, EventArgs e)
         {
@@ -100,7 +104,7 @@ namespace PiCompress
                 var result = await tinify.CompressAsync(_cts = new CancellationTokenSource());
                 picOutput.SetImage(result);
                 procCompressLevel.Value = procCompressLevel.Maximum;
-                MessageBox.Show(_cts.IsCancellationRequested 
+                MessageBox.Show(_cts.IsCancellationRequested
                     ? Localization.ProcessCanceledByUser
                     : _lastComressionLevel < numCompressLevel.Value
                     ? Localization.MoreNotCompact_CompresstionCompleted

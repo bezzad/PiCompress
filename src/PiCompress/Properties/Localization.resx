@@ -183,4 +183,7 @@
   <data name="TinifyAPIKeys" xml:space="preserve">
     <value>Tinify API Keys</value>
   </data>
+  <data name="DisplayCompressLevels" xml:space="preserve">
+    <value>Display Compress Levels</value>
+  </data>
 </root>

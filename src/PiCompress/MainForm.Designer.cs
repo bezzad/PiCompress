@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbImportImage = new System.Windows.Forms.GroupBox();
+            this.chkDisplayLevelsResult = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnKeyManager = new System.Windows.Forms.Button();
             this.procCompressLevel = new System.Windows.Forms.ProgressBar();
@@ -47,6 +48,7 @@
             // 
             // gbImportImage
             // 
+            this.gbImportImage.Controls.Add(this.chkDisplayLevelsResult);
             this.gbImportImage.Controls.Add(this.btnCancel);
             this.gbImportImage.Controls.Add(this.btnKeyManager);
             this.gbImportImage.Controls.Add(this.picOutput);
@@ -61,17 +63,29 @@
             this.gbImportImage.Margin = new System.Windows.Forms.Padding(4);
             this.gbImportImage.Name = "gbImportImage";
             this.gbImportImage.Padding = new System.Windows.Forms.Padding(4);
-            this.gbImportImage.Size = new System.Drawing.Size(857, 331);
+            this.gbImportImage.Size = new System.Drawing.Size(911, 331);
             this.gbImportImage.TabIndex = 0;
             this.gbImportImage.TabStop = false;
             this.gbImportImage.Text = "Import a Large Image (.png or .jpg)";
+            // 
+            // chkDisplayLevelsResult
+            // 
+            this.chkDisplayLevelsResult.AutoSize = true;
+            this.chkDisplayLevelsResult.Checked = true;
+            this.chkDisplayLevelsResult.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDisplayLevelsResult.Location = new System.Drawing.Point(16, 251);
+            this.chkDisplayLevelsResult.Name = "chkDisplayLevelsResult";
+            this.chkDisplayLevelsResult.Size = new System.Drawing.Size(188, 21);
+            this.chkDisplayLevelsResult.TabIndex = 11;
+            this.chkDisplayLevelsResult.Text = "Display Compress Levels";
+            this.chkDisplayLevelsResult.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Enabled = false;
-            this.btnCancel.Location = new System.Drawing.Point(478, 178);
+            this.btnCancel.Location = new System.Drawing.Point(498, 119);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(128, 46);
@@ -99,7 +113,7 @@
             this.procCompressLevel.Location = new System.Drawing.Point(13, 287);
             this.procCompressLevel.Margin = new System.Windows.Forms.Padding(4);
             this.procCompressLevel.Name = "procCompressLevel";
-            this.procCompressLevel.Size = new System.Drawing.Size(836, 28);
+            this.procCompressLevel.Size = new System.Drawing.Size(885, 28);
             this.procCompressLevel.TabIndex = 5;
             // 
             // btnCompress
@@ -107,7 +121,7 @@
             this.btnCompress.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCompress.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCompress.Enabled = false;
-            this.btnCompress.Location = new System.Drawing.Point(478, 124);
+            this.btnCompress.Location = new System.Drawing.Point(498, 51);
             this.btnCompress.Margin = new System.Windows.Forms.Padding(4);
             this.btnCompress.Name = "btnCompress";
             this.btnCompress.Size = new System.Drawing.Size(128, 46);
@@ -170,7 +184,7 @@
             this.gbResult.Margin = new System.Windows.Forms.Padding(4);
             this.gbResult.Name = "gbResult";
             this.gbResult.Padding = new System.Windows.Forms.Padding(4);
-            this.gbResult.Size = new System.Drawing.Size(857, 291);
+            this.gbResult.Size = new System.Drawing.Size(911, 336);
             this.gbResult.TabIndex = 1;
             this.gbResult.TabStop = false;
             this.gbResult.Text = "Compressed Images";
@@ -182,35 +196,35 @@
             this.flPanel.Location = new System.Drawing.Point(4, 19);
             this.flPanel.Margin = new System.Windows.Forms.Padding(4);
             this.flPanel.Name = "flPanel";
-            this.flPanel.Size = new System.Drawing.Size(849, 268);
+            this.flPanel.Size = new System.Drawing.Size(903, 313);
             this.flPanel.TabIndex = 0;
             // 
             // picOutput
             // 
             this.picOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picOutput.BackColor = System.Drawing.Color.Snow;
-            this.picOutput.Location = new System.Drawing.Point(629, 41);
+            this.picOutput.Location = new System.Drawing.Point(633, 22);
             this.picOutput.Name = "picOutput";
-            this.picOutput.Size = new System.Drawing.Size(220, 220);
+            this.picOutput.Size = new System.Drawing.Size(250, 250);
             this.picOutput.TabIndex = 8;
             // 
             // picInput
             // 
             this.picInput.BackColor = System.Drawing.Color.Snow;
-            this.picInput.Location = new System.Drawing.Point(236, 41);
+            this.picInput.Location = new System.Drawing.Point(241, 22);
             this.picInput.Name = "picInput";
-            this.picInput.Size = new System.Drawing.Size(220, 220);
+            this.picInput.Size = new System.Drawing.Size(250, 250);
             this.picInput.TabIndex = 7;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 622);
+            this.ClientSize = new System.Drawing.Size(911, 667);
             this.Controls.Add(this.gbResult);
             this.Controls.Add(this.gbImportImage);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(844, 518);
+            this.MinimumSize = new System.Drawing.Size(929, 515);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -236,6 +250,7 @@
         private ImageInfo picInput;
         private System.Windows.Forms.Button btnKeyManager;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.CheckBox chkDisplayLevelsResult;
     }
 }
 

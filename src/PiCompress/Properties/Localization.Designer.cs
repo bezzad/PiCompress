@@ -151,6 +151,15 @@ namespace PiCompress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display Compress Levels.
+        /// </summary>
+        internal static string DisplayCompressLevels {
+            get {
+                return ResourceManager.GetString("DisplayCompressLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image Files (*.png, *.jpg)|*.png;*.jpg.
         /// </summary>
         internal static string FilterImageFiles {

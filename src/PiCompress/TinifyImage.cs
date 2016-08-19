@@ -29,7 +29,7 @@ namespace PiCompress
             SourceImagePath = sourceImgPath;
             RepeatCompressionNumber = repeatCompressionNo;
         }
-        public TinifyImage(List<TinifyApiKeyPair> tinifyApiKeys, string sourceImgPath): this(tinifyApiKeys, sourceImgPath, 1) { }
+        public TinifyImage(List<TinifyApiKeyPair> tinifyApiKeys, string sourceImgPath) : this(tinifyApiKeys, sourceImgPath, 1) { }
         public TinifyImage(List<TinifyApiKeyPair> tinifyApiKeys, string sourceImgPath, int repeatCompressionNo)
         {
             ApiKeys = tinifyApiKeys;
@@ -47,8 +47,16 @@ namespace PiCompress
         public async Task<byte[]> CompressAsync(CancellationTokenSource cts)
         {
             var resImg = File.ReadAllBytes(SourceImagePath);
-
             long lastCompressedSize = 0;
+            //
+            // Check if api keys have enough compress remain count
+            while (ApiKeys.Any())
+            {
+                ApiKeys[0].CompressCount = await CompressRemainCountAsync(ApiKeys[0].Key);
+                if (ApiKeys[0].CompressRemainCount <= 0) ApiKeys.RemoveAt(0);
+                else break;
+            }
+
             for (var repeatCount = 1; repeatCount <= RepeatCompressionNumber; repeatCount++)
             {
                 using (var client = new WebClient())
@@ -81,7 +89,7 @@ namespace PiCompress
             EndOfCompress:
             return resImg;
         }
-        
+
 
         public int CompressRemainCount()
         {

@@ -9,6 +9,8 @@ namespace PiCompress
 {
     public partial class ImageInfo : UserControl
     {
+        public byte[] ImageBytes;
+
         public ImageInfo()
         {
             InitializeComponent();
@@ -33,13 +35,14 @@ namespace PiCompress
                 sfd.FileName = $"output.{picPanel.Image.GetExtension()}";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    picPanel.Image.Save(sfd.FileName);
+                    File.WriteAllBytes(sfd.FileName, ImageBytes);
                 }
             }
         }
 
         public void SetImage(byte[] imgArray)
         {
+            ImageBytes = imgArray;
             if (imgArray == null || !imgArray.Any()) return;
 
             lblSize.Text = imgArray.LongLength.CalcMemoryMensurableUnit();

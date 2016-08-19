@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,12 +24,13 @@ namespace PiCompress
 
         private void btnBrowseToSave_Click(object sender, EventArgs e)
         {
-            if(picPanel.Image == null) return;
-            
+            if (picPanel.Image == null) return;
+
             using (var sfd = new SaveFileDialog())
             {
                 sfd.Title = Localization.SaveImageFileDialogTitle;
                 sfd.Filter = Localization.FilterImageFiles;
+                sfd.FileName = $"output.{picPanel.Image.GetExtension()}";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     picPanel.Image.Save(sfd.FileName);

@@ -10,7 +10,7 @@ namespace PiCompress
     {
         private string _importPath;
         private List<TinifyApiKeyPair> _lstKeys;
-
+        private int lastComressionLevel = 0;
 
         public MainForm()
         {
@@ -40,11 +40,11 @@ namespace PiCompress
 
         private void btnBrowseInputImg_Click(object sender, EventArgs e)
         {
-            _importPath = GetImportedImagePath();
-            if (_importPath != null)
-            {
-                picInput.SetImage(_importPath);
-            }
+            var path = GetImportedImagePath();
+            if (path == null) return;
+
+            _importPath = path;
+            picInput.SetImage(_importPath);
         }
         private async void btnCompress_Click(object sender, EventArgs e)
         {
@@ -67,6 +67,10 @@ namespace PiCompress
                 tinify.ProgressChanged += Tinify_ProgressChanged;
                 var result = await tinify.CompressAsync();
                 picOutput.SetImage(result);
+                procCompressLevel.Value = procCompressLevel.Maximum;
+                MessageBox.Show(lastComressionLevel < numCompressLevel.Value
+                    ? Localization.MoreNotCompact_CompresstionCompleted
+                    : Localization.CompressCompleted);
             }
             catch (Exception exp)
             {
@@ -81,6 +85,7 @@ namespace PiCompress
         }
         private void Tinify_ProgressChanged(int compressLevel, byte[] currentLevelImage, int compressionCount)
         {
+            lastComressionLevel = compressLevel;
             var elapsedPercent = ((int)numCompressLevel.Value).GetPercent(compressLevel);
             procCompressLevel.Value = (int)elapsedPercent;
 

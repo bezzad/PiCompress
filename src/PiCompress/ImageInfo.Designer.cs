@@ -32,27 +32,32 @@
             this.lblSize = new System.Windows.Forms.Label();
             this.lblCompressLevel = new System.Windows.Forms.Label();
             this.btnBrowseToSave = new System.Windows.Forms.Button();
+            this.panelBackground = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picPanel)).BeginInit();
+            this.panelBackground.SuspendLayout();
             this.SuspendLayout();
             // 
             // picPanel
             // 
+            this.picPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.picPanel.BackColor = System.Drawing.Color.Snow;
-            this.picPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picPanel.Location = new System.Drawing.Point(0, 0);
+            this.picPanel.Location = new System.Drawing.Point(3, 3);
             this.picPanel.Name = "picPanel";
-            this.picPanel.Size = new System.Drawing.Size(220, 220);
+            this.picPanel.Size = new System.Drawing.Size(230, 159);
             this.picPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPanel.TabIndex = 0;
             this.picPanel.TabStop = false;
             // 
             // lblSize
             // 
+            this.lblSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSize.AutoSize = true;
             this.lblSize.BackColor = System.Drawing.Color.Transparent;
             this.lblSize.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSize.ForeColor = System.Drawing.Color.Maroon;
-            this.lblSize.Location = new System.Drawing.Point(4, 4);
+            this.lblSize.Location = new System.Drawing.Point(3, 171);
             this.lblSize.Name = "lblSize";
             this.lblSize.Size = new System.Drawing.Size(33, 25);
             this.lblSize.TabIndex = 1;
@@ -62,10 +67,11 @@
             // 
             // lblCompressLevel
             // 
+            this.lblCompressLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCompressLevel.AutoSize = true;
             this.lblCompressLevel.BackColor = System.Drawing.Color.Transparent;
             this.lblCompressLevel.ForeColor = System.Drawing.Color.Green;
-            this.lblCompressLevel.Location = new System.Drawing.Point(4, 32);
+            this.lblCompressLevel.Location = new System.Drawing.Point(3, 198);
             this.lblCompressLevel.Name = "lblCompressLevel";
             this.lblCompressLevel.Size = new System.Drawing.Size(125, 17);
             this.lblCompressLevel.TabIndex = 2;
@@ -79,28 +85,38 @@
             this.btnBrowseToSave.BackColor = System.Drawing.Color.DarkGray;
             this.btnBrowseToSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBrowseToSave.Font = new System.Drawing.Font("Simplified Arabic Fixed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowseToSave.Location = new System.Drawing.Point(140, 190);
+            this.btnBrowseToSave.Location = new System.Drawing.Point(163, 168);
             this.btnBrowseToSave.Name = "btnBrowseToSave";
-            this.btnBrowseToSave.Size = new System.Drawing.Size(77, 27);
+            this.btnBrowseToSave.Size = new System.Drawing.Size(70, 49);
             this.btnBrowseToSave.TabIndex = 3;
             this.btnBrowseToSave.Text = "&Save";
             this.btnBrowseToSave.UseVisualStyleBackColor = false;
             this.btnBrowseToSave.Click += new System.EventHandler(this.btnBrowseToSave_Click);
+            // 
+            // panelBackground
+            // 
+            this.panelBackground.Controls.Add(this.lblSize);
+            this.panelBackground.Controls.Add(this.lblCompressLevel);
+            this.panelBackground.Controls.Add(this.btnBrowseToSave);
+            this.panelBackground.Controls.Add(this.picPanel);
+            this.panelBackground.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBackground.Location = new System.Drawing.Point(0, 0);
+            this.panelBackground.Name = "panelBackground";
+            this.panelBackground.Size = new System.Drawing.Size(236, 220);
+            this.panelBackground.TabIndex = 4;
             // 
             // ImageInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
-            this.Controls.Add(this.btnBrowseToSave);
-            this.Controls.Add(this.lblCompressLevel);
-            this.Controls.Add(this.lblSize);
-            this.Controls.Add(this.picPanel);
+            this.Controls.Add(this.panelBackground);
             this.Name = "ImageInfo";
-            this.Size = new System.Drawing.Size(220, 220);
+            this.Size = new System.Drawing.Size(236, 220);
             ((System.ComponentModel.ISupportInitialize)(this.picPanel)).EndInit();
+            this.panelBackground.ResumeLayout(false);
+            this.panelBackground.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -110,5 +126,6 @@
         private System.Windows.Forms.Label lblSize;
         private System.Windows.Forms.Label lblCompressLevel;
         private System.Windows.Forms.Button btnBrowseToSave;
+        private System.Windows.Forms.Panel panelBackground;
     }
 }

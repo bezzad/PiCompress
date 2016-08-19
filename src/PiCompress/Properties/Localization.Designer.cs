@@ -88,6 +88,15 @@ namespace PiCompress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compression operation was completed..
+        /// </summary>
+        internal static string CompressCompleted {
+            get {
+                return ResourceManager.GetString("CompressCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compressed Images.
         /// </summary>
         internal static string CompressedImages {
@@ -129,6 +138,15 @@ namespace PiCompress.Properties {
         internal static string Import_a_Larg_Image_png_jpg {
             get {
                 return ResourceManager.GetString("Import_a_Larg_Image_png_jpg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More of this will not be more compact. Compression operation was completed..
+        /// </summary>
+        internal static string MoreNotCompact_CompresstionCompleted {
+            get {
+                return ResourceManager.GetString("MoreNotCompact_CompresstionCompleted", resourceCulture);
             }
         }
         

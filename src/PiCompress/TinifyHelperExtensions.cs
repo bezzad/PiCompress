@@ -175,5 +175,13 @@ namespace PiCompress
 
             return CalcMemoryMensurableUnit(bigInt);
         }
+
+        public static string GetExtension(this Image img)
+        {
+            var converter = new ImageFormatConverter();
+            var extension = converter.ConvertToString(img.RawFormat);
+
+            return extension?.ToLower();
+        }
     }
 }

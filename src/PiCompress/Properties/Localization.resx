@@ -153,4 +153,10 @@
   <data name="RightArrow" xml:space="preserve">
     <value>→</value>
   </data>
+  <data name="CompressCompleted" xml:space="preserve">
+    <value>Compression operation was completed.</value>
+  </data>
+  <data name="MoreNotCompact_CompresstionCompleted" xml:space="preserve">
+    <value>More of this will not be more compact. Compression operation was completed.</value>
+  </data>
 </root>

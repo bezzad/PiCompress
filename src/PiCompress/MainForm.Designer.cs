@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.gbImportImage = new System.Windows.Forms.GroupBox();
-            this.picOutput = new PiCompress.ImageInfo();
-            this.picInput = new PiCompress.ImageInfo();
             this.procCompressLevel = new System.Windows.Forms.ProgressBar();
             this.btnCompress = new System.Windows.Forms.Button();
             this.lblNumCompressLevel = new System.Windows.Forms.Label();
@@ -38,6 +36,8 @@
             this.btnBrowseInputImg = new System.Windows.Forms.Button();
             this.gbResult = new System.Windows.Forms.GroupBox();
             this.flPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.picOutput = new PiCompress.ImageInfo();
+            this.picInput = new PiCompress.ImageInfo();
             this.gbImportImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCompressLevel)).BeginInit();
             this.gbResult.SuspendLayout();
@@ -61,23 +61,6 @@
             this.gbImportImage.TabIndex = 0;
             this.gbImportImage.TabStop = false;
             this.gbImportImage.Text = "Import a Large Image (.png or .jpg)";
-            // 
-            // picOutput
-            // 
-            this.picOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picOutput.BackColor = System.Drawing.Color.Snow;
-            this.picOutput.Location = new System.Drawing.Point(629, 41);
-            this.picOutput.Name = "picOutput";
-            this.picOutput.Size = new System.Drawing.Size(220, 220);
-            this.picOutput.TabIndex = 8;
-            // 
-            // picInput
-            // 
-            this.picInput.BackColor = System.Drawing.Color.Snow;
-            this.picInput.Location = new System.Drawing.Point(236, 41);
-            this.picInput.Name = "picInput";
-            this.picInput.Size = new System.Drawing.Size(220, 220);
-            this.picInput.TabIndex = 7;
             // 
             // procCompressLevel
             // 
@@ -171,6 +154,23 @@
             this.flPanel.Size = new System.Drawing.Size(849, 268);
             this.flPanel.TabIndex = 0;
             // 
+            // picOutput
+            // 
+            this.picOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picOutput.BackColor = System.Drawing.Color.Snow;
+            this.picOutput.Location = new System.Drawing.Point(629, 41);
+            this.picOutput.Name = "picOutput";
+            this.picOutput.Size = new System.Drawing.Size(220, 220);
+            this.picOutput.TabIndex = 8;
+            // 
+            // picInput
+            // 
+            this.picInput.BackColor = System.Drawing.Color.Snow;
+            this.picInput.Location = new System.Drawing.Point(236, 41);
+            this.picInput.Name = "picInput";
+            this.picInput.Size = new System.Drawing.Size(220, 220);
+            this.picInput.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -201,8 +201,8 @@
         private System.Windows.Forms.GroupBox gbResult;
         private System.Windows.Forms.FlowLayoutPanel flPanel;
         private System.Windows.Forms.ProgressBar procCompressLevel;
-        private ImageInfo picInput;
         private ImageInfo picOutput;
+        private ImageInfo picInput;
     }
 }
 

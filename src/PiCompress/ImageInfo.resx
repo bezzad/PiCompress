@@ -117,40 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppTitle" xml:space="preserve">
-    <value>Compress and Optimize Images</value>
-  </data>
-  <data name="BrowseLargeImage" xml:space="preserve">
-    <value>Browse Large Image</value>
-  </data>
-  <data name="Compress" xml:space="preserve">
-    <value>Compress</value>
-  </data>
-  <data name="CompressedImages" xml:space="preserve">
-    <value>Compressed Images</value>
-  </data>
-  <data name="CompressLevel" xml:space="preserve">
-    <value>Compress Level</value>
-  </data>
-  <data name="FilterImageFiles" xml:space="preserve">
-    <value>Image Files (*.png, *.jpg)|*.png;*.jpg</value>
-  </data>
-  <data name="Import_a_Larg_Image_png_jpg" xml:space="preserve">
-    <value>Import a Large Image (.png or .jpg)</value>
-  </data>
-  <data name="OpenImageFileDialogTitle" xml:space="preserve">
-    <value>Open Image File</value>
-  </data>
-  <data name="CompressRemainCount" xml:space="preserve">
-    <value>Compress Remain Count</value>
-  </data>
-  <data name="Size" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="SaveImageFileDialogTitle" xml:space="preserve">
-    <value>Save Image File</value>
-  </data>
-  <data name="RightArrow" xml:space="preserve">
-    <value>→</value>
-  </data>
 </root>

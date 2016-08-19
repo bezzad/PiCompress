@@ -133,11 +133,38 @@ namespace PiCompress.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Images File.
+        ///   Looks up a localized string similar to Open Image File.
         /// </summary>
         internal static string OpenImageFileDialogTitle {
             get {
                 return ResourceManager.GetString("OpenImageFileDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to →.
+        /// </summary>
+        internal static string RightArrow {
+            get {
+                return ResourceManager.GetString("RightArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Image File.
+        /// </summary>
+        internal static string SaveImageFileDialogTitle {
+            get {
+                return ResourceManager.GetString("SaveImageFileDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        internal static string Size {
+            get {
+                return ResourceManager.GetString("Size", resourceCulture);
             }
         }
     }

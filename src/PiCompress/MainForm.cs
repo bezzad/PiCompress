@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PiCompress.Properties;
 
@@ -26,20 +20,12 @@ namespace PiCompress
             //
             gbImportImage.Text = Localization.Import_a_Larg_Image_png_jpg;
             btnBrowseInputImg.Text = Localization.BrowseLargeImage;
-            btnCompress.Text = Localization.Compress;
-            lblNumCompressLevel.Text = Localization.CompressLevel;
+            btnCompress.Text = $"{Localization.Compress} {Localization.RightArrow}";
+            lblNumCompressLevel.Text = $"{Localization.CompressLevel}:";
             gbResult.Text = Localization.CompressedImages;
             Text = Localization.AppTitle;
         }
 
-        private void btnBrowseInputImg_Click(object sender, EventArgs e)
-        {
-            _importPath = GetImportedImagePath();
-            if (_importPath != null)
-            {
-                picInput.ImageLocation = _importPath;
-            }
-        }
 
         private string GetImportedImagePath()
         {
@@ -52,11 +38,20 @@ namespace PiCompress
             }
         }
 
-
+        private void btnBrowseInputImg_Click(object sender, EventArgs e)
+        {
+            _importPath = GetImportedImagePath();
+            if (_importPath != null)
+            {
+                picInput.SetImage(_importPath);
+            }
+        }
         private async void btnCompress_Click(object sender, EventArgs e)
         {
             try
             {
+                numCompressLevel.Enabled = false;
+                btnBrowseInputImg.Enabled = false;
                 Cursor = Cursors.WaitCursor;
 
                 if (_importPath == null)
@@ -70,8 +65,8 @@ namespace PiCompress
 
                 var tinify = new TinifyImage(_lstKeys, _importPath, (int)numCompressLevel.Value);
                 tinify.ProgressChanged += Tinify_ProgressChanged;
-                var result = tinify.Compress();
-                picOutput.Image = result;
+                var result = await tinify.CompressAsync();
+                picOutput.SetImage(result);
             }
             catch (Exception exp)
             {
@@ -80,25 +75,21 @@ namespace PiCompress
             finally
             {
                 Cursor = Cursors.Default;
+                numCompressLevel.Enabled = true;
+                btnBrowseInputImg.Enabled = true;
             }
         }
-
-
-        private void Tinify_ProgressChanged(double elapsedPercent, byte[] currentLevelImage, int compressionCount)
+        private void Tinify_ProgressChanged(int compressLevel, byte[] currentLevelImage, int compressionCount)
         {
+            var elapsedPercent = ((int)numCompressLevel.Value).GetPercent(compressLevel);
             procCompressLevel.Value = (int)elapsedPercent;
 
-            var pic = new PictureBox
-            {
-                Image = currentLevelImage.ConvertToImage(),
-                SizeMode = PictureBoxSizeMode.Zoom,
-                Size = new Size(200, 200)
-            };
+            var pic = new ImageInfo(compressLevel);
+            pic.SetImage(currentLevelImage);
 
-            this.Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {TinifyImage.MaxCompressCount - compressionCount}";
+            this.Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {_lstKeys.Sum(x => x.CompressRemainCount)}";
             flPanel.Controls.Add(pic);
         }
-
         private async void MainForm_Load(object sender, EventArgs e)
         {
             try
@@ -108,6 +99,7 @@ namespace PiCompress
                 _lstKeys = await TinifyHelperExtensions.GenerateTinifyApiKeysAsync();
                 var tinify = new TinifyImage(_lstKeys, _importPath);
                 Text = $"{Localization.AppTitle} - {Localization.CompressRemainCount}: {tinify.CompressRemainCount()}";
+                btnCompress.Enabled = true;
             }
             catch (Exception ex)
             {

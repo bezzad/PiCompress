@@ -36,17 +36,18 @@ namespace PiCompress
             RepeatCompressionNumber = repeatCompressionNo;
         }
 
-        public delegate void ProgressChangedEventHandler(double elapsedPercent, byte[] currentLevelImage, int compressionCount);
+        public delegate void ProgressChangedEventHandler(int compressLevel, byte[] currentLevelImage, int compressionCount);
         public event ProgressChangedEventHandler ProgressChanged = delegate { };
-        protected virtual void OnProgressChanged(double elapsedpercent, byte[] currentlevelimage, int compressionCount)
+        protected virtual void OnProgressChanged(int compressLevel, byte[] currentlevelimage, int compressionCount)
         {
-            ProgressChanged?.Invoke(elapsedpercent, currentlevelimage, compressionCount);
+            ProgressChanged?.Invoke(compressLevel, currentlevelimage, compressionCount);
         }
 
-        public Image Compress()
+        public async Task<byte[]> CompressAsync()
         {
-            byte[] resImg = File.ReadAllBytes(SourceImagePath);
+            var resImg = File.ReadAllBytes(SourceImagePath);
 
+            long lastCompressedSize = 0;
             for (var repeatCount = 1; repeatCount <= RepeatCompressionNumber; repeatCount++)
             {
                 using (var client = new WebClient())
@@ -58,22 +59,28 @@ namespace PiCompress
 
                     do
                     {
-                        client.UploadData(ApiUrl, resImg);
+                        await client.UploadDataTaskAsync(ApiUrl, resImg);
 
                         // Compression was successful, retrieve output from Location header.
-                        resImg = client.DownloadData(client.ResponseHeaders["Location"]);
+                        resImg = await client.DownloadDataTaskAsync(client.ResponseHeaders["Location"]);
                         ApiKeys[0].CompressCount = int.Parse(client.ResponseHeaders["Compression-Count"]);
 
                         // call progress event to new compress level
-                        OnProgressChanged(RepeatCompressionNumber.GetPercent(repeatCount), resImg, ApiKeys[0].CompressCount);
+                        OnProgressChanged(repeatCount, resImg, ApiKeys[0].CompressCount);
 
                         if (ApiKeys[0].CompressRemainCount <= 0) ApiKeys.RemoveAt(0);
+
+                        if (lastCompressedSize == resImg.LongLength) goto EndOfCompress;
+
+                        lastCompressedSize = resImg.LongLength;
                     } while (++repeatCount <= RepeatCompressionNumber && ApiKeys.Any());
                 }
             }
 
-            return resImg.ConvertToImage();
+            EndOfCompress:
+            return resImg;
         }
+        
 
         public int CompressRemainCount()
         {

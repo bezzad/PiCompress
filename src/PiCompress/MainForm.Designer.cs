@@ -29,37 +29,35 @@
         private void InitializeComponent()
         {
             this.gbImportImage = new System.Windows.Forms.GroupBox();
-            this.picOutput = new System.Windows.Forms.PictureBox();
+            this.picOutput = new PiCompress.ImageInfo();
+            this.picInput = new PiCompress.ImageInfo();
             this.procCompressLevel = new System.Windows.Forms.ProgressBar();
             this.btnCompress = new System.Windows.Forms.Button();
             this.lblNumCompressLevel = new System.Windows.Forms.Label();
             this.numCompressLevel = new System.Windows.Forms.NumericUpDown();
             this.btnBrowseInputImg = new System.Windows.Forms.Button();
-            this.picInput = new System.Windows.Forms.PictureBox();
             this.gbResult = new System.Windows.Forms.GroupBox();
             this.flPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.gbImportImage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picOutput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCompressLevel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picInput)).BeginInit();
             this.gbResult.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbImportImage
             // 
             this.gbImportImage.Controls.Add(this.picOutput);
+            this.gbImportImage.Controls.Add(this.picInput);
             this.gbImportImage.Controls.Add(this.procCompressLevel);
             this.gbImportImage.Controls.Add(this.btnCompress);
             this.gbImportImage.Controls.Add(this.lblNumCompressLevel);
             this.gbImportImage.Controls.Add(this.numCompressLevel);
             this.gbImportImage.Controls.Add(this.btnBrowseInputImg);
-            this.gbImportImage.Controls.Add(this.picInput);
             this.gbImportImage.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbImportImage.Location = new System.Drawing.Point(0, 0);
             this.gbImportImage.Margin = new System.Windows.Forms.Padding(4);
             this.gbImportImage.Name = "gbImportImage";
             this.gbImportImage.Padding = new System.Windows.Forms.Padding(4);
-            this.gbImportImage.Size = new System.Drawing.Size(826, 331);
+            this.gbImportImage.Size = new System.Drawing.Size(857, 331);
             this.gbImportImage.TabIndex = 0;
             this.gbImportImage.TabStop = false;
             this.gbImportImage.Text = "Import a Large Image (.png or .jpg)";
@@ -67,13 +65,19 @@
             // picOutput
             // 
             this.picOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picOutput.Location = new System.Drawing.Point(598, 41);
-            this.picOutput.Margin = new System.Windows.Forms.Padding(4);
+            this.picOutput.BackColor = System.Drawing.Color.Snow;
+            this.picOutput.Location = new System.Drawing.Point(629, 41);
             this.picOutput.Name = "picOutput";
             this.picOutput.Size = new System.Drawing.Size(220, 220);
-            this.picOutput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picOutput.TabIndex = 6;
-            this.picOutput.TabStop = false;
+            this.picOutput.TabIndex = 8;
+            // 
+            // picInput
+            // 
+            this.picInput.BackColor = System.Drawing.Color.Snow;
+            this.picInput.Location = new System.Drawing.Point(236, 41);
+            this.picInput.Name = "picInput";
+            this.picInput.Size = new System.Drawing.Size(220, 220);
+            this.picInput.TabIndex = 7;
             // 
             // procCompressLevel
             // 
@@ -82,13 +86,15 @@
             this.procCompressLevel.Location = new System.Drawing.Point(13, 287);
             this.procCompressLevel.Margin = new System.Windows.Forms.Padding(4);
             this.procCompressLevel.Name = "procCompressLevel";
-            this.procCompressLevel.Size = new System.Drawing.Size(805, 28);
+            this.procCompressLevel.Size = new System.Drawing.Size(836, 28);
             this.procCompressLevel.TabIndex = 5;
             // 
             // btnCompress
             // 
             this.btnCompress.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCompress.Location = new System.Drawing.Point(463, 124);
+            this.btnCompress.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCompress.Enabled = false;
+            this.btnCompress.Location = new System.Drawing.Point(478, 124);
             this.btnCompress.Margin = new System.Windows.Forms.Padding(4);
             this.btnCompress.Name = "btnCompress";
             this.btnCompress.Size = new System.Drawing.Size(128, 46);
@@ -111,6 +117,11 @@
             // 
             this.numCompressLevel.Location = new System.Drawing.Point(153, 206);
             this.numCompressLevel.Margin = new System.Windows.Forms.Padding(4);
+            this.numCompressLevel.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numCompressLevel.Minimum = new decimal(new int[] {
             1,
             0,
@@ -137,16 +148,6 @@
             this.btnBrowseInputImg.UseVisualStyleBackColor = true;
             this.btnBrowseInputImg.Click += new System.EventHandler(this.btnBrowseInputImg_Click);
             // 
-            // picInput
-            // 
-            this.picInput.Location = new System.Drawing.Point(235, 41);
-            this.picInput.Margin = new System.Windows.Forms.Padding(4);
-            this.picInput.Name = "picInput";
-            this.picInput.Size = new System.Drawing.Size(220, 220);
-            this.picInput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picInput.TabIndex = 0;
-            this.picInput.TabStop = false;
-            // 
             // gbResult
             // 
             this.gbResult.Controls.Add(this.flPanel);
@@ -155,7 +156,7 @@
             this.gbResult.Margin = new System.Windows.Forms.Padding(4);
             this.gbResult.Name = "gbResult";
             this.gbResult.Padding = new System.Windows.Forms.Padding(4);
-            this.gbResult.Size = new System.Drawing.Size(826, 291);
+            this.gbResult.Size = new System.Drawing.Size(857, 291);
             this.gbResult.TabIndex = 1;
             this.gbResult.TabStop = false;
             this.gbResult.Text = "Compressed Images";
@@ -167,14 +168,14 @@
             this.flPanel.Location = new System.Drawing.Point(4, 19);
             this.flPanel.Margin = new System.Windows.Forms.Padding(4);
             this.flPanel.Name = "flPanel";
-            this.flPanel.Size = new System.Drawing.Size(818, 268);
+            this.flPanel.Size = new System.Drawing.Size(849, 268);
             this.flPanel.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 622);
+            this.ClientSize = new System.Drawing.Size(857, 622);
             this.Controls.Add(this.gbResult);
             this.Controls.Add(this.gbImportImage);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -184,9 +185,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.gbImportImage.ResumeLayout(false);
             this.gbImportImage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picOutput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCompressLevel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picInput)).EndInit();
             this.gbResult.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -196,14 +195,14 @@
 
         private System.Windows.Forms.GroupBox gbImportImage;
         private System.Windows.Forms.Button btnBrowseInputImg;
-        private System.Windows.Forms.PictureBox picInput;
         private System.Windows.Forms.Button btnCompress;
         private System.Windows.Forms.Label lblNumCompressLevel;
         private System.Windows.Forms.NumericUpDown numCompressLevel;
         private System.Windows.Forms.GroupBox gbResult;
         private System.Windows.Forms.FlowLayoutPanel flPanel;
         private System.Windows.Forms.ProgressBar procCompressLevel;
-        private System.Windows.Forms.PictureBox picOutput;
+        private ImageInfo picInput;
+        private ImageInfo picOutput;
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using PiCompress.Properties;
 
@@ -10,8 +11,9 @@ namespace PiCompress
     {
         private string _importPath;
         private List<TinifyApiKeyPair> _lstKeys;
-        private int lastComressionLevel = 0;
-
+        private int _lastComressionLevel = 0;
+        private CancellationTokenSource _cts;
+        
         public MainForm()
         {
             InitializeComponent();
@@ -23,11 +25,13 @@ namespace PiCompress
             btnCompress.Text = $"{Localization.Compress} {Localization.RightArrow}";
             lblNumCompressLevel.Text = $"{Localization.CompressLevel}:";
             gbResult.Text = Localization.CompressedImages;
+            btnKeyManager.Text = Localization.KeyManager;
+            btnCancel.Text = $"{Localization.Cancel} {Localization.CancelSymbol}";
             Text = Localization.AppTitle;
         }
 
 
-        private string GetImportedImagePath()
+        private string GetImportImagePath()
         {
             using (var ofd = new OpenFileDialog())
             {
@@ -38,54 +42,9 @@ namespace PiCompress
             }
         }
 
-        private void btnBrowseInputImg_Click(object sender, EventArgs e)
-        {
-            var path = GetImportedImagePath();
-            if (path == null) return;
-
-            _importPath = path;
-            picInput.SetImage(_importPath);
-        }
-        private async void btnCompress_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                numCompressLevel.Enabled = false;
-                btnBrowseInputImg.Enabled = false;
-                Cursor = Cursors.WaitCursor;
-
-                if (_importPath == null)
-                {
-                    btnBrowseInputImg.PerformClick();
-                }
-
-                if (_importPath == null) return;
-
-                procCompressLevel.Value = 0;
-
-                var tinify = new TinifyImage(_lstKeys, _importPath, (int)numCompressLevel.Value);
-                tinify.ProgressChanged += Tinify_ProgressChanged;
-                var result = await tinify.CompressAsync();
-                picOutput.SetImage(result);
-                procCompressLevel.Value = procCompressLevel.Maximum;
-                MessageBox.Show(lastComressionLevel < numCompressLevel.Value
-                    ? Localization.MoreNotCompact_CompresstionCompleted
-                    : Localization.CompressCompleted);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show(exp.Message);
-            }
-            finally
-            {
-                Cursor = Cursors.Default;
-                numCompressLevel.Enabled = true;
-                btnBrowseInputImg.Enabled = true;
-            }
-        }
         private void Tinify_ProgressChanged(int compressLevel, byte[] currentLevelImage, int compressionCount)
         {
-            lastComressionLevel = compressLevel;
+            _lastComressionLevel = compressLevel;
             var elapsedPercent = ((int)numCompressLevel.Value).GetPercent(compressLevel);
             procCompressLevel.Value = (int)elapsedPercent;
 
@@ -114,6 +73,64 @@ namespace PiCompress
             {
                 Cursor = Cursors.Default;
             }
+        }
+        private async void btnCompress_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                numCompressLevel.Enabled = false;
+                btnBrowseInputImg.Enabled = false;
+                btnCancel.Enabled = true;
+                Cursor = Cursors.WaitCursor;
+
+                if (_importPath == null)
+                {
+                    btnBrowseInputImg.PerformClick();
+                }
+
+                if (_importPath == null) return;
+
+                procCompressLevel.Value = 0;
+
+                var tinify = new TinifyImage(_lstKeys, _importPath, (int)numCompressLevel.Value);
+                tinify.ProgressChanged += Tinify_ProgressChanged;
+                var result = await tinify.CompressAsync(_cts = new CancellationTokenSource());
+                picOutput.SetImage(result);
+                procCompressLevel.Value = procCompressLevel.Maximum;
+                MessageBox.Show(_cts.IsCancellationRequested 
+                    ? Localization.ProcessCanceledByUser
+                    : _lastComressionLevel < numCompressLevel.Value
+                    ? Localization.MoreNotCompact_CompresstionCompleted
+                    : Localization.CompressCompleted);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                numCompressLevel.Enabled = true;
+                btnCancel.Enabled = false;
+                btnBrowseInputImg.Enabled = true;
+            }
+        }
+        private void btnBrowseInputImg_Click(object sender, EventArgs e)
+        {
+            var path = GetImportImagePath();
+            if (path == null) return;
+
+            _importPath = path;
+            picInput.SetImage(_importPath);
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            _cts.Cancel();
+        }
+        private void btnKeyManager_Click(object sender, EventArgs e)
+        {
+            var keysForm = new KeyManager();
+            keysForm.Show();
         }
     }
 }

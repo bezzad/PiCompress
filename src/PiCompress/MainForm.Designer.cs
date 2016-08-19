@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.gbImportImage = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnKeyManager = new System.Windows.Forms.Button();
             this.procCompressLevel = new System.Windows.Forms.ProgressBar();
             this.btnCompress = new System.Windows.Forms.Button();
             this.lblNumCompressLevel = new System.Windows.Forms.Label();
@@ -45,6 +47,8 @@
             // 
             // gbImportImage
             // 
+            this.gbImportImage.Controls.Add(this.btnCancel);
+            this.gbImportImage.Controls.Add(this.btnKeyManager);
             this.gbImportImage.Controls.Add(this.picOutput);
             this.gbImportImage.Controls.Add(this.picInput);
             this.gbImportImage.Controls.Add(this.procCompressLevel);
@@ -61,6 +65,32 @@
             this.gbImportImage.TabIndex = 0;
             this.gbImportImage.TabStop = false;
             this.gbImportImage.Text = "Import a Large Image (.png or .jpg)";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(478, 178);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(128, 46);
+            this.btnCancel.TabIndex = 10;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnKeyManager
+            // 
+            this.btnKeyManager.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKeyManager.Location = new System.Drawing.Point(35, 51);
+            this.btnKeyManager.Margin = new System.Windows.Forms.Padding(4);
+            this.btnKeyManager.Name = "btnKeyManager";
+            this.btnKeyManager.Size = new System.Drawing.Size(128, 46);
+            this.btnKeyManager.TabIndex = 9;
+            this.btnKeyManager.Text = "Key Manager";
+            this.btnKeyManager.UseVisualStyleBackColor = true;
+            this.btnKeyManager.Click += new System.EventHandler(this.btnKeyManager_Click);
             // 
             // procCompressLevel
             // 
@@ -89,7 +119,7 @@
             // lblNumCompressLevel
             // 
             this.lblNumCompressLevel.AutoSize = true;
-            this.lblNumCompressLevel.Location = new System.Drawing.Point(32, 208);
+            this.lblNumCompressLevel.Location = new System.Drawing.Point(13, 208);
             this.lblNumCompressLevel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumCompressLevel.Name = "lblNumCompressLevel";
             this.lblNumCompressLevel.Size = new System.Drawing.Size(113, 17);
@@ -98,7 +128,7 @@
             // 
             // numCompressLevel
             // 
-            this.numCompressLevel.Location = new System.Drawing.Point(153, 206);
+            this.numCompressLevel.Location = new System.Drawing.Point(129, 206);
             this.numCompressLevel.Margin = new System.Windows.Forms.Padding(4);
             this.numCompressLevel.Maximum = new decimal(new int[] {
             1000,
@@ -111,8 +141,9 @@
             0,
             0});
             this.numCompressLevel.Name = "numCompressLevel";
-            this.numCompressLevel.Size = new System.Drawing.Size(61, 22);
+            this.numCompressLevel.Size = new System.Drawing.Size(79, 22);
             this.numCompressLevel.TabIndex = 2;
+            this.numCompressLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numCompressLevel.Value = new decimal(new int[] {
             1,
             0,
@@ -122,10 +153,10 @@
             // btnBrowseInputImg
             // 
             this.btnBrowseInputImg.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBrowseInputImg.Location = new System.Drawing.Point(68, 41);
+            this.btnBrowseInputImg.Location = new System.Drawing.Point(35, 119);
             this.btnBrowseInputImg.Margin = new System.Windows.Forms.Padding(4);
             this.btnBrowseInputImg.Name = "btnBrowseInputImg";
-            this.btnBrowseInputImg.Size = new System.Drawing.Size(128, 108);
+            this.btnBrowseInputImg.Size = new System.Drawing.Size(128, 51);
             this.btnBrowseInputImg.TabIndex = 1;
             this.btnBrowseInputImg.Text = "Browse Large Image";
             this.btnBrowseInputImg.UseVisualStyleBackColor = true;
@@ -203,6 +234,8 @@
         private System.Windows.Forms.ProgressBar procCompressLevel;
         private ImageInfo picOutput;
         private ImageInfo picInput;
+        private System.Windows.Forms.Button btnKeyManager;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 

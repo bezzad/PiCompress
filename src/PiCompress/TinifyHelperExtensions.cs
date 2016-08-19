@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
@@ -42,18 +41,6 @@ namespace PiCompress
             }
 
             return lst;
-        }
-
-        public static async Task<string> GenerateApiKey()
-        {
-            for (var index = 1; index <= Settings.Default.PropertyValues.Count; index++)
-            {
-                var tinifyKey = Settings.Default[$"TinifyApiKey{index}"].ToString();
-                var count = await TinifyImage.CompressRemainCountAsync(tinifyKey);
-                if (count < TinifyImage.MaxCompressCount) return tinifyKey;
-            }
-
-            return null;
         }
 
         public static string CalcMemoryMensurableUnit(this double bigUnSignedNumber)
@@ -102,44 +89,44 @@ namespace PiCompress
                                 //var infinitybyte = nilevanikbyte / 1024; // . Infinitybyte = 1024 Nilevanikbyte 
                                 //var websitebyte = infinitybyte / 1024; // . Websitebyte = 1024 Infinitybyte
 
-            return 
-            //       websitebyte > 1 ? string.Format(culture, "{0:N0} Websitebyte", websitebyte) :
-            //       infinitybyte > 1 ? string.Format(culture, "{0:N0} Infinitybyte", infinitybyte) :
-            //       nilevanikbyte > 1 ? string.Format(culture, "{0:N0} Nilevanikbyte", nilevanikbyte) :
-            //       amazonikbyte > 1 ? string.Format(culture, "{0:N0} Amazonikbyte", amazonikbyte) :
-            //       diamonikbyte > 1 ? string.Format(culture, "{0:N0} Diamonikbyte", diamonikbyte) :
-            //       rubanikbyte > 1 ? string.Format(culture, "{0:N0} Rubanikbyte", rubanikbyte) :
-            //       emeranikbyte > 1 ? string.Format(culture, "{0:N0} Emeranikbyte", emeranikbyte) :
-            //       einstanikbyte > 1 ? string.Format(culture, "{0:N0} Einstanikbyte", einstanikbyte) :
-            //       platvanikbyte > 1 ? string.Format(culture, "{0:N0} Platvanikbyte", platvanikbyte) :
-            //       golvanikbyte > 1 ? string.Format(culture, "{0:N0} Golvanikbyte", golvanikbyte) :
-            //       silvanikbyte > 1 ? string.Format(culture, "{0:N0} Silvanikbyte", silvanikbyte) :
-            //       koentekbyte > 1 ? string.Format(culture, "{0:N0} Koentekbyte", koentekbyte) :
-            //       coperbyte > 1 ? string.Format(culture, "{0:N0} Coperbyte", coperbyte) :
-            //       roentbyte > 1 ? string.Format(culture, "{0:N0} Roentbyte", roentbyte) :
-            //       darmstadbyte > 1 ? string.Format(culture, "{0:N0} Darmstadbyte", darmstadbyte) :
-            //       meitnerbyte > 1 ? string.Format(culture, "{0:N0} Meitnerbyte", meitnerbyte) :
-            //       hassiuB > 1 ? string.Format(culture, "{0:N0} Hassiubyte", hassiuB) :
-            //       bohrB > 1 ? string.Format(culture, "{0:N0} Bohrbyte", bohrB) :
-            //       seaborgB > 1 ? string.Format(culture, "{0:N0} Seaborgbyte", seaborgB) :
-            //       dubniB > 1 ? string.Format(culture, "{0:N0} Dubnibyte", dubniB) :
-            //       rutherB > 1 ? string.Format(culture, "{0:N0} Rutherbyte", rutherB) :
-            //       kinsaB > 1 ? string.Format(culture, "{0:N0} Kinsabyte", kinsaB) :
-            //       quesaB > 1 ? string.Format(culture, "{0:N0} Quesabyte", quesaB) :
-            //       samboB > 1 ? string.Format(culture, "{0:N0} Sambobyte", samboB) :
-            //       bolgerB > 1 ? string.Format(culture, "{0:N0} Bolgerbyte", bolgerB) :
-            //       pectrolB > 1 ? string.Format(culture, "{0:N0} Pectrolbyte", pectrolB) :
-            //       amosB > 1 ? string.Format(culture, "{0:N0} Amosbyte", amosB) :
-            //       kryatB > 1 ? string.Format(culture, "{0:N0} Kryatbyte", kryatB) :
-            //       alphaB > 1 ? string.Format(culture, "{0:N0} Alphabyte", alphaB) :
-            //       pijaB > 1 ? string.Format(culture, "{0:N0} Pijabyte", pijaB) :
-            //       saganB > 1 ? string.Format(culture, "{0:N0} Saganbyte", saganB) :
-            //       geoB > 1 ? string.Format(culture, "{0:N0} Geopbyte", geoB) :
-            //       bb > 1 ? string.Format(culture, "{0:N0} Brontobytes", bb) :
-            //       yb > 1 ? string.Format(culture, "{0:N0} Yottabytes", yb) :
-            //       zb > 1 ? string.Format(culture, "{0:N0} Zettabytes", zb) :
-            //       eb > 1 ? string.Format(culture, "{0:N0} Exabytes", eb) :
-            //       pb > 1 ? string.Format(culture, "{0:N0} Petabytes", pb) :
+            return
+                   //       websitebyte > 1 ? string.Format(culture, "{0:N0} Websitebyte", websitebyte) :
+                   //       infinitybyte > 1 ? string.Format(culture, "{0:N0} Infinitybyte", infinitybyte) :
+                   //       nilevanikbyte > 1 ? string.Format(culture, "{0:N0} Nilevanikbyte", nilevanikbyte) :
+                   //       amazonikbyte > 1 ? string.Format(culture, "{0:N0} Amazonikbyte", amazonikbyte) :
+                   //       diamonikbyte > 1 ? string.Format(culture, "{0:N0} Diamonikbyte", diamonikbyte) :
+                   //       rubanikbyte > 1 ? string.Format(culture, "{0:N0} Rubanikbyte", rubanikbyte) :
+                   //       emeranikbyte > 1 ? string.Format(culture, "{0:N0} Emeranikbyte", emeranikbyte) :
+                   //       einstanikbyte > 1 ? string.Format(culture, "{0:N0} Einstanikbyte", einstanikbyte) :
+                   //       platvanikbyte > 1 ? string.Format(culture, "{0:N0} Platvanikbyte", platvanikbyte) :
+                   //       golvanikbyte > 1 ? string.Format(culture, "{0:N0} Golvanikbyte", golvanikbyte) :
+                   //       silvanikbyte > 1 ? string.Format(culture, "{0:N0} Silvanikbyte", silvanikbyte) :
+                   //       koentekbyte > 1 ? string.Format(culture, "{0:N0} Koentekbyte", koentekbyte) :
+                   //       coperbyte > 1 ? string.Format(culture, "{0:N0} Coperbyte", coperbyte) :
+                   //       roentbyte > 1 ? string.Format(culture, "{0:N0} Roentbyte", roentbyte) :
+                   //       darmstadbyte > 1 ? string.Format(culture, "{0:N0} Darmstadbyte", darmstadbyte) :
+                   //       meitnerbyte > 1 ? string.Format(culture, "{0:N0} Meitnerbyte", meitnerbyte) :
+                   //       hassiuB > 1 ? string.Format(culture, "{0:N0} Hassiubyte", hassiuB) :
+                   //       bohrB > 1 ? string.Format(culture, "{0:N0} Bohrbyte", bohrB) :
+                   //       seaborgB > 1 ? string.Format(culture, "{0:N0} Seaborgbyte", seaborgB) :
+                   //       dubniB > 1 ? string.Format(culture, "{0:N0} Dubnibyte", dubniB) :
+                   //       rutherB > 1 ? string.Format(culture, "{0:N0} Rutherbyte", rutherB) :
+                   //       kinsaB > 1 ? string.Format(culture, "{0:N0} Kinsabyte", kinsaB) :
+                   //       quesaB > 1 ? string.Format(culture, "{0:N0} Quesabyte", quesaB) :
+                   //       samboB > 1 ? string.Format(culture, "{0:N0} Sambobyte", samboB) :
+                   //       bolgerB > 1 ? string.Format(culture, "{0:N0} Bolgerbyte", bolgerB) :
+                   //       pectrolB > 1 ? string.Format(culture, "{0:N0} Pectrolbyte", pectrolB) :
+                   //       amosB > 1 ? string.Format(culture, "{0:N0} Amosbyte", amosB) :
+                   //       kryatB > 1 ? string.Format(culture, "{0:N0} Kryatbyte", kryatB) :
+                   //       alphaB > 1 ? string.Format(culture, "{0:N0} Alphabyte", alphaB) :
+                   //       pijaB > 1 ? string.Format(culture, "{0:N0} Pijabyte", pijaB) :
+                   //       saganB > 1 ? string.Format(culture, "{0:N0} Saganbyte", saganB) :
+                   //       geoB > 1 ? string.Format(culture, "{0:N0} Geopbyte", geoB) :
+                   //       bb > 1 ? string.Format(culture, "{0:N0} Brontobytes", bb) :
+                   //       yb > 1 ? string.Format(culture, "{0:N0} Yottabytes", yb) :
+                   //       zb > 1 ? string.Format(culture, "{0:N0} Zettabytes", zb) :
+                   //       eb > 1 ? string.Format(culture, "{0:N0} Exabytes", eb) :
+                   //       pb > 1 ? string.Format(culture, "{0:N0} Petabytes", pb) :
                    tb > 1 ? string.Format(culture, "{0:N2} Terabytes", tb) :
                    gb > 1 ? string.Format(culture, "{0:N2} Gigabytes", gb) :
                    mb > 1 ? string.Format(culture, "{0:N2} Megabytes", mb) :
@@ -158,14 +145,14 @@ namespace PiCompress
             var style = NumberStyles.Number | NumberStyles.AllowCurrencySymbol;
             var culture = CultureInfo.CreateSpecificCulture("en-US");
 
-            return double.TryParse(strUnSignedNumber, style, culture, out value) 
-                ? CalcMemoryMensurableUnit(value) 
+            return double.TryParse(strUnSignedNumber, style, culture, out value)
+                ? CalcMemoryMensurableUnit(value)
                 : string.Empty;
         }
 
         public static string CalcMemoryMensurableUnit(this long lngUnSignedNumber)
         {
-            var bigInt = (double) lngUnSignedNumber;
+            var bigInt = (double)lngUnSignedNumber;
 
             return CalcMemoryMensurableUnit(bigInt);
         }

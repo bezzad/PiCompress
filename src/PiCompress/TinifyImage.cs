@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiCompress
@@ -43,7 +44,7 @@ namespace PiCompress
             ProgressChanged?.Invoke(compressLevel, currentlevelimage, compressionCount);
         }
 
-        public async Task<byte[]> CompressAsync()
+        public async Task<byte[]> CompressAsync(CancellationTokenSource cts)
         {
             var resImg = File.ReadAllBytes(SourceImagePath);
 
@@ -70,7 +71,7 @@ namespace PiCompress
 
                         if (ApiKeys[0].CompressRemainCount <= 0) ApiKeys.RemoveAt(0);
 
-                        if (lastCompressedSize == resImg.LongLength) goto EndOfCompress;
+                        if (lastCompressedSize == resImg.LongLength || cts.IsCancellationRequested) goto EndOfCompress;
 
                         lastCompressedSize = resImg.LongLength;
                     } while (++repeatCount <= RepeatCompressionNumber && ApiKeys.Any());

@@ -61,6 +61,15 @@ namespace PiCompress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to API Key.
+        /// </summary>
+        internal static string API_Key {
+            get {
+                return ResourceManager.GetString("API_Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compress and Optimize Images.
         /// </summary>
         internal static string AppTitle {
@@ -75,6 +84,24 @@ namespace PiCompress.Properties {
         internal static string BrowseLargeImage {
             get {
                 return ResourceManager.GetString("BrowseLargeImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  ×.
+        /// </summary>
+        internal static string CancelSymbol {
+            get {
+                return ResourceManager.GetString("CancelSymbol", resourceCulture);
             }
         }
         
@@ -142,11 +169,29 @@ namespace PiCompress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Key Manager.
+        /// </summary>
+        internal static string KeyManager {
+            get {
+                return ResourceManager.GetString("KeyManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More of this will not be more compact. Compression operation was completed..
         /// </summary>
         internal static string MoreNotCompact_CompresstionCompleted {
             get {
                 return ResourceManager.GetString("MoreNotCompact_CompresstionCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -160,11 +205,29 @@ namespace PiCompress.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compress process cancelled by user..
+        /// </summary>
+        internal static string ProcessCanceledByUser {
+            get {
+                return ResourceManager.GetString("ProcessCanceledByUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to →.
         /// </summary>
         internal static string RightArrow {
             get {
                 return ResourceManager.GetString("RightArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row.
+        /// </summary>
+        internal static string Row {
+            get {
+                return ResourceManager.GetString("Row", resourceCulture);
             }
         }
         
@@ -183,6 +246,15 @@ namespace PiCompress.Properties {
         internal static string Size {
             get {
                 return ResourceManager.GetString("Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tinify API Keys.
+        /// </summary>
+        internal static string TinifyAPIKeys {
+            get {
+                return ResourceManager.GetString("TinifyAPIKeys", resourceCulture);
             }
         }
     }
